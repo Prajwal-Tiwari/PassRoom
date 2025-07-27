@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 function Home() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-200 to-blue-900">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#141E30] to-[#243B55-] text-black">
       <motion.div 
         initial={{opacity: 0, scale: 0.9}}
         animate={{opacity:1, scale: 1}}
