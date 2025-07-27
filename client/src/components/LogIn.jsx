@@ -27,8 +27,8 @@ const Login = () => {
       // optionally store user info or token
       console.log(res.data.user); // name and email
 
-      // Redirect to dashboard or home
-      navigate("/dashboard"); // make sure this route exists
+      // Redirecting to the dashboard subdomain
+      window.location.href = "http://dashboard.localhost:5174";
     } catch (err) {
       alert("Invalid credentials or server error");
       console.error(err);
