@@ -22,7 +22,6 @@ const Login = () => {
 
     try {
       const res = await axios.post("http://localhost:3000/login", formData);
-      alert("Login successful");
 
       // optionally store user info or token
       console.log(res.data.user); // name and email

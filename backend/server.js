@@ -7,7 +7,7 @@ const crypto = require('crypto');
 const form = express();
 const port = 3000;
 
-// ===🔐 AES ENCRYPTION CONFIG ===
+// AS ENCRYPTION CONFIG
 const ENCRYPTION_KEY = crypto
   .createHash('sha256')
   .update('your_super_secret_key_123') // Use ENV in production
@@ -32,19 +32,19 @@ function decrypt(text) {
   return decrypted;
 }
 
-// ===🛡 Middleware ===
+// Middleware
 form.use(cors({
   origin: ['http://localhost:5173', 'http://dashboard.localhost:5174'],
   credentials: true
 }));
 form.use(express.json());
 
-// ===📦 MongoDB Connection ===
+// MongoDB Connection
 mongoose.connect('mongodb://localhost:27017/form')
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.error('MongoDB connection failed. Error:', err));
 
-// ===👤 User Schema (still using bcrypt) ===
+//User Schema (still using bcrypt)
 const UserSchema = new mongoose.Schema({
   name: String,
   email: String,
@@ -52,7 +52,7 @@ const UserSchema = new mongoose.Schema({
 });
 const user = mongoose.model('user', UserSchema);
 
-// ===🔐 Credential Schema (AES Encrypted password) ===
+// Credential Schema (AES Encrypted password)
 const credentialSchema = new mongoose.Schema({
   website: String,
   username: String,
@@ -60,7 +60,7 @@ const credentialSchema = new mongoose.Schema({
 });
 const Credential = mongoose.model('Credential', credentialSchema);
 
-// ===📩 Route to Add Credential ===
+// Route to Add Credential
 form.post('/add-credential', async (req, res) => {
   try {
     const { website, username, password } = req.body;
@@ -80,7 +80,7 @@ form.post('/add-credential', async (req, res) => {
   }
 });
 
-// ===🔓 Route to Decrypt Credential Password ===
+//  Route to Decrypt Credential Password
 form.post('/decrypt-password', async (req, res) => {
   try {
     const { id } = req.body;
@@ -97,7 +97,7 @@ form.post('/decrypt-password', async (req, res) => {
   }
 });
 
-// ===📥 Signup Route ===
+//  Signup Route
 form.post('/submit', async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -118,7 +118,7 @@ form.post('/submit', async (req, res) => {
   }
 });
 
-// ===🧠 Login Route ===
+// Login Route
 form.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -140,7 +140,7 @@ form.post('/login', async (req, res) => {
   }
 });
 
-// ===📤 Fetch All Credentials ===
+// Fetch All Credentials
 form.get('/credentials', async (req, res) => {
   try {
     const credentials = await Credential.find();
@@ -151,7 +151,7 @@ form.get('/credentials', async (req, res) => {
   }
 });
 
-// ===🧪 Test ===
+// Test
 form.get('/', (req, res) => {
   res.send("Welcome to the server");
 });
