@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <nav className="bg-blue-300 text-black w-full">
+    <nav className="bg-white/10 backdrop-blur-md shadow-md border-b border-white/20 text-black fixed w-full top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center ">
         <h1 className="text-2xl font-semibold tracking-wide">PassRoom</h1>
         <ul className="flex gap-6 text-lg font-medium">
