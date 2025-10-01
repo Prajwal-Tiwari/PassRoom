@@ -56,7 +56,7 @@ export default function Vault() {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-semibold mb-4">🔐 Your Vault</h2>
+      <h2 className="text-2xl font-semibold mb-4"> Your Vault</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4 mb-8">
         <input
@@ -94,7 +94,7 @@ export default function Vault() {
         </button>
       </form>
 
-      <h3 className="text-xl font-semibold mb-2">🗂 Stored Credentials:</h3>
+      <h3 className="text-xl font-semibold mb-2"> Stored Credentials:</h3>
       <div className="space-y-4">
         {credentials.map((cred) => (
           <div
@@ -103,7 +103,7 @@ export default function Vault() {
             onClick={() => togglePassword(cred._id)}
           >
             <p className="text-lg font-semibold text-blue-800">
-              🔐 Website: {cred.website}
+               Website: {cred.website}
             </p>
             <p>
               <strong>Username:</strong> {cred.username}

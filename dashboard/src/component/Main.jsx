@@ -11,7 +11,7 @@ export default function Main() {
         className="w-full max-w-4xl rounded-2xl p-8 backdrop-blur-lg bg-white/10 shadow-2xl border border-white/20"
       >
         <h1 className="text-3xl font-semibold text-black mb-6">
-          Welcome to PassRoom 🔐
+          Welcome to PassRoom 
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

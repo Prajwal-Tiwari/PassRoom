@@ -10,7 +10,7 @@ const navItems = [
 export default function Sidebar() {
   return (
     <aside className="w-64 bg-gradient-to-br from-[#141E30] to-[#243B55-] text-black shadow-lg p-4 text-white space-y-6">
-      <h1 className="text-2xl font-bold text-center mb-4">🔐 PassRoom</h1>
+      <h1 className="text-2xl font-bold text-center mb-4"> PassRoom</h1>
       <nav className="space-y-3">
         {navItems.map((item) => (
           <NavLink
