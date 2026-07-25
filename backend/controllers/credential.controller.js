@@ -1,4 +1,3 @@
-import { createDecipheriv } from "crypto";
 import Credential from "../models/Credential.model.js";
 import { encrypt, decrypt } from "../utils/encryption.js";
 import { checkPwned } from "../utils/hibp.js";
@@ -6,7 +5,6 @@ import { checkPwned } from "../utils/hibp.js";
 export const addCredential = async (req, res, next) => {
   try {
     const { website, username, password } = req.body;
-    const breachCount = await checkPwned(password);
     const encryptedPassword = encrypt(password);
 
     const credential = await Credential.create({
@@ -15,16 +13,24 @@ export const addCredential = async (req, res, next) => {
       username,
       password: encryptedPassword,
     });
-    res.status(201).json({ 
-        success: true,
-        credential,
-        warning:
-            breachCount === null
-                ? "Couldn't verify password against breach database"
-                : breachCount > 0
-                ? `This password has appeared in ${breachCount} known breaches`
-                : null,
-     });
+
+    res.status(201).json({ success: true, credential });
+  } catch (err) {
+    next(err);
+  }
+};
+
+// new, separate, optional
+export const checkPasswordHealth = async (req, res, next) => {
+  try {
+    const { password } = req.body;
+    const breachCount = await checkPwned(password);
+
+    res.status(200).json({
+      success: true,
+      breached: breachCount === null ? null : breachCount > 0,
+      breachCount,
+    });
   } catch (err) {
     next(err);
   }

@@ -1,4 +1,6 @@
 import crypto from "crypto";
+import dotenv from "dotenv";
+dotenv.config();
 
 const ENCRYPTION_KEY = Buffer.from(process.env.AES_KEY, "hex");
 

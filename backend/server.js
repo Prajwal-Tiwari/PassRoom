@@ -14,6 +14,11 @@ import { errorHandler } from "./middleware/error.middleware.js";
 
 //creating express app
 const app = express();
+// server.js, temporarily, right after express() init
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path} - ${new Date().toISOString()}`);
+  next();
+});
 
 //database connection
 connectDB();

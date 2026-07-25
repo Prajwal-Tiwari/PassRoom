@@ -22,7 +22,7 @@ export const signup = async (req, res, next) =>{
             process.env.JWT_SECRET,
             { expiresIn: "2h" }
         );
-        res.status(200).json(
+        res.status(201).json(
             {
                 success: true,
                 token,
