@@ -10,5 +10,5 @@ export default defineConfig({
   server: {
     host: 'dashboard.localhost',
     port: 5174, // or any port
-  }
-})
+  },
+});

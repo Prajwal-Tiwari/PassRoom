@@ -10,7 +10,7 @@ function Contact() {
       >
         <h1 className="text-3xl font-bold text-black mb-4">Contact Us</h1>
         <p className="text-black mb-2">Have any questions or feedback? We'd love to hear from you.</p>
-        <p className="text-blak font-medium">📧aasthayadav815@gmail.com</p>
+        <p className="text-black font-medium">📧aasthayadav815@gmail.com</p>
 
       </motion.div>
       </div>

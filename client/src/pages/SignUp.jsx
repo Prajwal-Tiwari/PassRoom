@@ -1,15 +1,14 @@
-import { Link, useNavigate } from "react-router-dom"; // ✅ Add useNavigate
 import React, { useState } from "react";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext.jsx";
 
 const Signup = () => {
-  const navigate = useNavigate(); // ✅ Initialize navigation hook
+  const navigate = useNavigate();
+  const { signup } = useAuth();
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,24 +16,28 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axios.post("http://localhost:3000/submit", formData);
-      alert("Form Submitted");
-      setFormData({ name: "", email: "", password: "" });
+    setError("");
+    setSubmitting(true);
 
-      navigate("/login"); // ✅ Redirect to login page after success
+    try {
+      await signup(formData.name, formData.email, formData.password);
+      navigate("/login");
     } catch (err) {
-      alert("Submission failed");
-      console.error(err);
+      const message = err.response?.data?.message || "Signup failed";
+      setError(message);
+    } finally {
+      setSubmitting(false);
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#141E30] to-[#243B55-] text-black px-4">
       <div className="from-blue-900 via-blue-200 to-blue-500 bg-opacity-90 p-8 rounded-xl shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-          Create your account
-        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Create your account</h2>
+
+        {error && (
+          <p className="text-red-600 text-sm text-center mb-4">{error}</p>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
@@ -65,22 +68,21 @@ const Signup = () => {
             placeholder="Password"
             className="w-full px-4 py-2 mb-4 rounded border border-black focus:outline-none"
             required
+            minLength={8}
           />
 
           <button
             type="submit"
-            className="w-full py-2 bg-blue-900 text-white font-semibold rounded hover:bg-blue-400"
+            disabled={submitting}
+            className="w-full py-2 bg-blue-900 text-white font-semibold rounded hover:bg-blue-400 disabled:opacity-50"
           >
-            Sign Up
+            {submitting ? "Creating account..." : "Sign Up"}
           </button>
         </form>
 
         <p className="text-center text-sm text-black mt-4">
           Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-blue-900 hover:underline font-medium"
-          >
+          <Link to="/login" className="text-blue-900 hover:underline font-medium">
             Login
           </Link>
         </p>

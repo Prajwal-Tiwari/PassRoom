@@ -14,19 +14,16 @@ import { errorHandler } from "./middleware/error.middleware.js";
 
 //creating express app
 const app = express();
-// server.js, temporarily, right after express() init
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.path} - ${new Date().toISOString()}`);
-  next();
-});
 
 //database connection
 connectDB();
 
+const allowedOrigins = process.env.CLIENT_URL.split(",");
+
 //middlewares
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: allowedOrigins,
     credentials: true,
   })
 );
@@ -37,7 +34,6 @@ app.use(express.urlencoded({extended: true}));
 //routes
 app.use("/api/auth", authRoutes);
 app.use("/api/credentials", credentialRoutes);
-app.use(errorHandler);
 
 app.get("/", (req,res)=>{
   res.json({
@@ -45,6 +41,8 @@ app.get("/", (req,res)=>{
     message: "Passroom Backend running",
   });
 });
+
+app.use(errorHandler);
 
 //starting the server
 const PORT = process.env.PORT || 3000;

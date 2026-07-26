@@ -45,7 +45,7 @@ function Home() {
           Your secure and private Password Manager.
         </p>
 
-        <Link to="/login">
+        <Link to="/Login">
           <button className="px-6 py-2 bg-blue-900 text-white font-semibold rounded hover:bg-blue-700 transition">
             Get Started
           </button>

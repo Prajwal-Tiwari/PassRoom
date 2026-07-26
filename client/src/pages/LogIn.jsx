@@ -1,45 +1,45 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useAuth } from "../context/AuthContext.jsx";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    setSubmitting(true);
 
     try {
-      const res = await axios.post("http://localhost:3000/login", formData);
-
-      // optionally store user info or token
-      console.log(res.data.user); // name and email
-
-      // Redirecting to the dashboard subdomain
-      window.location.href = "http://dashboard.localhost:5174";
+      await login(formData.email, formData.password);
+      // TODO Step 7 decision: how the dashboard receives the token
+      // for now, staying on client — wire the redirect once that's decided
+      navigate("/");
     } catch (err) {
-      alert("Invalid credentials or server error");
-      console.error(err);
+      const message = err.response?.data?.message || "Invalid credentials or server error";
+      setError(message);
+    } finally {
+      setSubmitting(false);
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#141E30] to-[#243B55-] text-black">
       <div className="from-blue-900 via-blue-200 to-blue-500 bg-opacity-90 p-8 rounded-xl shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-          Log In
-        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Log In</h2>
+
+        {error && (
+          <p className="text-red-600 text-sm text-center mb-4">{error}</p>
+        )}
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
@@ -70,18 +70,16 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full py-2 bg-blue-900 text-white font-semibold rounded hover:bg-blue-400"
+            disabled={submitting}
+            className="w-full py-2 bg-blue-900 text-white font-semibold rounded hover:bg-blue-400 disabled:opacity-50"
           >
-            Login
+            {submitting ? "Logging in..." : "Login"}
           </button>
         </form>
 
         <p className="text-center text-sm text-black mt-4">
-          Don’t have an account?{" "}
-          <Link
-            to="/signup"
-            className="text-blue-900 hover:underline font-medium"
-          >
+          Don't have an account?{" "}
+          <Link to="/signup" className="text-blue-900 hover:underline font-medium">
             Sign up
           </Link>
         </p>
