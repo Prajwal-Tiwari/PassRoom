@@ -20,10 +20,8 @@ const Login = () => {
     setSubmitting(true);
 
     try {
-      await login(formData.email, formData.password);
-      // TODO Step 7 decision: how the dashboard receives the token
-      // for now, staying on client — wire the redirect once that's decided
-      navigate("/");
+      const data = await login(formData.email, formData.password);
+      window.location.href = `${import.meta.env.VITE_DASHBOARD_URL}?token=${data.token}`;
     } catch (err) {
       const message = err.response?.data?.message || "Invalid credentials or server error";
       setError(message);
