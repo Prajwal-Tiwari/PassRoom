@@ -1,31 +1,33 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Main from "./component/Main.jsx";
-import Vault from "./component/Vault.jsx";
-import DashboardLayout from "./component/DashboardLayout.jsx";
+import { Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import DashboardLayout from "./component/DashboardLayout.jsx"
+import Main from "./pages/Main.jsx"
+import Vault from "./pages/Vault.jsx"
+import PasswordHealth from "./pages/PasswordHealth.jsx"
+import PasswordManager from "./pages/PasswordManager.jsx"
 
 function App() {
   return (
-    <Router>
+    <AuthProvider>
       <Routes>
-        {/* Dashboard layout applied to everything under this route */}
-        <Route path="/" element={<DashboardLayout />}>
-          {/* Main dashboard landing */}
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        
+        >
           <Route index element={<Main />} />
-
-          {/* Subpages */}
-          <Route path="vault" element={<Vault />} />
-          <Route
-            path="password-health"
-            element={<div>Password Health Page</div>}
-          />
-          <Route
-            path="passkey-manager"
-            element={<div>Passkey Manager Page</div>}
-          />
-          <Route path="settings" element={<div>Settings Page</div>} />
+          <Route path= "vault" element={<Vault />} />
+          <Route path= "password-health" element={<PasswordHealth />} />
+          <Route path= "password-manager" element={<PasswordManager />} />
+          <Route path= "settings" element={<div>Settings Page</div>} />
         </Route>
       </Routes>
-    </Router>
+    </AuthProvider>
   );
 }
 
