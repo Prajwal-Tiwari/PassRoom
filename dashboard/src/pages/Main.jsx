@@ -15,19 +15,19 @@ export default function Main() {
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          < button className="rounded-xl bg-white/10 p-4 text-black shadow-inner border border-white/10">
+          < button className="rounded-xl bg-white/2 p-4 text-black shadow-inner border border-white/10">
             <h2 className="text-xl font-bold">Your Vault</h2>
             <p className="text-sm mt-2">Securely stored passwords and credentials.</p>
           </button>
-          <button className="rounded-xl bg-white/10 p-4 text-black shadow-inner border border-white/10">
+          <button className="rounded-xl bg-white/2 p-4 text-black shadow-inner border border-white/10">
             <h2 className="text-xl font-bold">Password Health</h2>
             <p className="text-sm mt-2">Check reuse, weak, and strong password stats.</p>
           </button>
-          <button className="rounded-xl bg-white/10 p-4 text-black shadow-inner border border-white/10">
+          <button className="rounded-xl bg-white/2 p-4 text-black shadow-inner border border-white/10">
             <h2 className="text-xl font-bold">Passkey Manager</h2>
             <p className="text-sm mt-2">Manage your biometric/web-auth passkeys here.</p>
           </button>
-          <button className="rounded-xl bg-white/10 p-4 text-black shadow-inner border border-white/10">
+          <button className="rounded-xl bg-white/2 p-4 text-black shadow-inner border border-white/10">
             <h2 className="text-xl font-bold">Settings</h2>
             <p className="text-sm mt-2">Configure encryption, export/import data.</p>
           </button>
