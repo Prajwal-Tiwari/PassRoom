@@ -38,7 +38,7 @@ export default function PasswordHealth() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter a password to check"
-          className="w-full px-4 py-2 rounded border border-gray-400 text-black"
+          className="w-full px-4 py-2 rounded border border-gray-400 text-gray-300"
           required
         />
         <button

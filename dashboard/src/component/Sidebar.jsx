@@ -1,16 +1,20 @@
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 
+
 const navItems = [
   { name: 'Vault', to: '/vault' },
   { name: 'Password Health', to: '/password-health' },
-  { name: 'Passkey Manager', to: '/passkey-manager' },
+  { name: 'Password Manager', to: '/password-manager' },
   { name: 'Settings', to: '/settings' },
 ];
 
 export default function Sidebar() {
+
+  const { logout } = useAuth();
+
   return (
-    <aside className="w-64 bg-gradient-to-br from-[#141E30] to-[#243B55-] text-black shadow-lg p-4 text-white space-y-6 flex flex-col justify-between">
+    <aside className="w-64 bg-gradient-to-br from-[#141E30] to-[#243B55] text-black shadow-lg p-4 text-white space-y-6 flex flex-col justify-between">
       <div>
       <h1 className="text-2xl font-bold text-center mb-4"> PassRoom</h1>
       <nav className="space-y-3">
@@ -32,7 +36,7 @@ export default function Sidebar() {
 
       <button
         onClick={logout}
-        className='px-4 rounded bg-red-500/20 hover:bg-red-500/40 border-red-500/40 transition'
+        className='px-4 rounded bg-red-500/20 hover:bg-red-500/70 border-red-500/40 transition'
       >
         Logout
       </button>

@@ -79,7 +79,7 @@ export default function Vault() {
           value={formData.website}
           onChange={handleChange}
           placeholder="Website"
-          className="w-full px-4 py-2 rounded border border-gray-400 text-black"
+          className="w-full px-4 py-2 rounded border border-gray-400 text-gray-300"
           required
         />
         <input
@@ -88,7 +88,7 @@ export default function Vault() {
           value={formData.username}
           onChange={handleChange}
           placeholder="Username"
-          className="w-full px-4 py-2 rounded border border-gray-400 text-black"
+          className="w-full px-4 py-2 rounded border border-gray-400 text-gray-300"
           required
         />
         <input
@@ -97,7 +97,7 @@ export default function Vault() {
           value={formData.password}
           onChange={handleChange}
           placeholder="Password"
-          className="w-full px-4 py-2 rounded border border-gray-400 text-black"
+          className="w-full px-4 py-2 rounded border border-gray-400 text-gray-300"
           required
         />
         <button
