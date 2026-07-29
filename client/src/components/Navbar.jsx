@@ -12,28 +12,28 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-white/10 backdrop-blur-md shadow-md border-b border-white/20 text-black fixed w-full top-0 z-50">
+    <nav className="fixed top-0 z-50 w-full bg-slate-950/70 backdrop-blur-xl border-b border-white/10 shadow-lg text-slate-100">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center ">
-        <h1 className="text-2xl font-semibold tracking-wide">PassRoom</h1>
+        <h1 className="text-2xl font-bold tracking-wide text-blue-400 cursor-pointer">PassRoom</h1>
         <ul className="flex gap-6 text-lg font-medium">
           <li>
-            <Link to="/" className="hover:text-blue-600 transition duration-200">
+            <Link to="/" className="relative text-slate-300 hover:text-blue-400 transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-blue-400 after:transition-all after:duration-300 hover:after:w-full">
               Home
             </Link>
           </li>
           <li>
-            <Link to="/About" className="hover:text-blue-600 transition duration-200">
+            <Link to="/About" className="relative text-slate-300 hover:text-blue-400 transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-blue-400 after:transition-all after:duration-300 hover:after:w-full">
               About
             </Link>
           </li>
           <li>
-            <Link to="/Contact" className="hover:text-blue-600 transition duration-200">
+            <Link to="/Contact" className="relative text-slate-300 hover:text-blue-400 transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-blue-400 after:transition-all after:duration-300 hover:after:w-full">
               Contact
             </Link>
           </li>
           <li>
-            <Link to="/LogIn" className="hover:text-blue-600 transition duration-200">
-              LogIn
+            <Link to="/Login" className="relative text-slate-300 hover:text-blue-400 transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-blue-400 after:transition-all after:duration-300 hover:after:w-full">
+              Login
             </Link>
           </li>
         </ul>

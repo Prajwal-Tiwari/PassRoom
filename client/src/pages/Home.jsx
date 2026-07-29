@@ -31,22 +31,22 @@ function Home() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#141E30] to-[#243B55-] text-black px-4 py-10">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 px-4 py-10">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="text-center mb-10"
       >
-        <h1 className="text-4xl font-bold mb-4 text-black-700">
+        <h1 className="text-5xl font-bold mb-4 text-slate-100">
           Welcome to PassRoom
         </h1>
-        <p className="text-black text-lg mb-6">
+        <p className="text-slate-300 text-lg mb-6">
           Your secure and private Password Manager.
         </p>
 
         <Link to="/Login">
-          <button className="px-6 py-2 bg-blue-900 text-white font-semibold rounded hover:bg-blue-700 transition">
+          <button className="px-7 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-500 transition-all duration-300 hover:scale-105 shadow-lg">
             Get Started
           </button>
         </Link>
@@ -58,12 +58,12 @@ function Home() {
             key={index}
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 200 }}
-            className="bg-white/30 text-black backdrop-blur-md p-6 rounded-xl shadow-md border border-white/40 hover:shadow-lg hover:bg-white/40 transition"
+            className="bg-white/5 backdrop-blur-xl p-6 rounded-2xl border border-white/10 shadow-xl text-slate-100 transition-all duration-300 hover:scale-105 hover:bg-white/10 hover:border-blue-500/50 hover:shadow-blue-500/20"
           >
-            <h2 className="text-xl font-semibold mb-2">
+            <h2 className="text-xl font-semibold mb-2 text-slate-100">
               {feature.icon} {feature.title}
             </h2>
-            <p className="text-sm">{feature.desc}</p>
+            <p className="text-sm text-slate-400">{feature.desc}</p>
           </motion.div>
         ))}
       </div>
